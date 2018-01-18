@@ -40,6 +40,7 @@ int do_main(const std::vector<std::string>& args)
   {
     std::cout << "false\n"; return 0;
   }
+  return 0;
 }
 
 ///Tests the do_main function
