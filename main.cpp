@@ -34,11 +34,11 @@ int do_main(const std::vector<std::string>& args)
 
   if(outcome_is_even)
   {
-    std::cout << "true\n"; return 0;
+    std::cout << "true\n";
   }
   else if(!outcome_is_even)
   {
-    std::cout << "false\n"; return 0;
+    std::cout << "false\n";
   }
   return 0;
 }
