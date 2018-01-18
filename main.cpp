@@ -21,34 +21,24 @@ bool is_number(const std::string& str)
 int do_main(const std::vector<std::string>& args)
 {
   if (args.size() != 2) return 1;
-  try
+
+  const std::string number = args[1];
+
+  bool outcome_is_number = is_number(number);
+  if(!outcome_is_number)
   {
-    const std::string number = args[1];
-
-    bool outcome_is_number = is_number(number);
-    if(!outcome_is_number)
-    {
-      std::cout << "This is not a number"; return 1;
-    }
-
-    bool outcome_is_even = is_even(number);
-
-    if(outcome_is_even)
-    {
-      std::cout << "true\n"; return 0;
-    }
-    else if(!outcome_is_even)
-    {
-      std::cout << "false\n"; return 0;
-    }
+    std::cout << "This is not a number"; return 1;
   }
-  catch (const std::invalid_argument&)
+
+  bool outcome_is_even = is_even(number);
+
+  if(outcome_is_even)
   {
-    return 1;
+    std::cout << "true\n"; return 0;
   }
-  catch (const std::out_of_range&)
+  else if(!outcome_is_even)
   {
-    return 1;
+    std::cout << "false\n"; return 0;
   }
   return 0;
 }
@@ -63,6 +53,8 @@ void test_do_main()
   assert(do_main( { "is_even", "-12345678901234567891" } ) == 0);
   assert(do_main( { "is_even", "2", "1" } ) == 1);
   assert(do_main( { "is_even", "nonsense" } ) == 1);
+  assert(do_main( { "is_even", "1" } ) == 0);
+  assert(do_main( { "is_even", "2" } ) == 0);
 }
 
 ///Tests the is_even function
@@ -74,6 +66,7 @@ void test_is_even()
   assert( is_even("-12345678901234567890"));
   assert(!is_even("-12345678901234567891"));
   assert(!is_even("nonsense"));
+  assert(!is_even("1"));
 }
 
 ///Tests the is_number function
